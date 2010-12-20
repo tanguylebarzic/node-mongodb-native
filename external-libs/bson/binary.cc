@@ -158,8 +158,8 @@ Handle<Value> Binary::Write(const Arguments &args) {
   // If we have a buffer let's retrieve the data
   if(Buffer::HasInstance(args[0])) {
     Buffer *buffer = ObjectWrap::Unwrap<Buffer>(args[0]->ToObject());
-    data = buffer->data();
-    length = buffer->length();
+    data = Buffer::Data(args[0]->ToObject());
+    length = Buffer::Length(args[0]->ToObject());
   } else {
     Local<String> str = args[0]->ToString();
     length = DecodeBytes(str, BINARY);
